@@ -5,6 +5,7 @@
 
 @import 'button';
 @import 'card';
+@import 'input';
 
 * {
   font-family: 'Raleway', sans-serif;
@@ -38,4 +39,9 @@ body {
       margin-bottom: $spacing-m;
     }
   }
+}
+
+.login {
+  min-width: 300px;
+  min-height: 300px;
 }

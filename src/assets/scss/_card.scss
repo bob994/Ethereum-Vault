@@ -30,6 +30,8 @@
   }
 
   &-footer {
+    display: flex;
+    justify-content: center;
   }
 
   &.is-balance &-content {

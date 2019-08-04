@@ -15,4 +15,10 @@
   &:focus {
     outline: 0;
   }
+
+  &:not(:disabled):hover,
+  &:focus {
+    color: $blue;
+    border-color: $blue;
+  }
 }

@@ -1,0 +1,27 @@
+.input {
+  display: block;
+  padding: $spacing-m;
+  background-color: $light;
+  border: none;
+  color: $gray;
+
+  &:focus {
+    outline-color: $blue;
+  }
+
+  &-group {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: $spacing-m;
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: $spacing-s;
+    font-size: 14px;
+  }
+
+  &:focus ~ &-label {
+    color: $blue;
+  }
+}
