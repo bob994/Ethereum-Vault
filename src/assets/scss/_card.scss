@@ -1,0 +1,41 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: $medium;
+  border-radius: $spacing-xs;
+  padding: $spacing-m;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-m;
+    color: $white;
+
+    &-title {
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &-content {
+    flex-grow: 1;
+    color: $gray;
+    font-size: 18px;
+  }
+
+  &-footer {
+  }
+
+  &.is-balance &-content {
+    font-size: 42px;
+    text-align: center;
+    color: $blue;
+    margin-bottom: $spacing-m;
+  }
+}
