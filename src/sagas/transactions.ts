@@ -1,4 +1,4 @@
-import { all, call, takeLatest, put, select } from '@redux-saga/core/effects';
+import { all, call, takeLatest, put } from '@redux-saga/core/effects';
 import * as T from '../modules/transactions';
 import { getHistory } from '../services/ether';
 import { TransactionResponse } from 'ethers/providers';

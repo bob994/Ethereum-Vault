@@ -1,5 +1,6 @@
 import { createAsyncAction, createReducer, ActionType } from 'typesafe-actions';
 import { TransactionResponse } from 'ethers/providers';
+import { ReduxState } from '../store';
 
 export const getTransactions = createAsyncAction(
   'GET_TRANSACTIONS_REQUEST',
@@ -49,3 +50,6 @@ export const transactionsReducer = createReducer<
     ...state,
     fetching: false,
   }));
+
+export const getTransactionsSelector = (state: ReduxState) =>
+  state.transactions.transactions;

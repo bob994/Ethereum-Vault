@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { store } from './store';
 import { connectToInfura } from './services/ether';
 
-import './index.scss';
+import './assets/scss/style.scss';
 
 export const ReduxState = store;
 export const provider = connectToInfura();
