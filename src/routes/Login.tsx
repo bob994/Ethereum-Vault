@@ -2,11 +2,14 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn, getWallet } from '../modules/wallet';
 import { useLocation } from 'wouter';
+import Card from '../components/Card';
 
 export const SignIn = () => {
   const wallet = useSelector(getWallet);
   const dispatch = useDispatch();
-  const [privateKey, setPrivateKey] = useState('');
+  const [privateKey, setPrivateKey] = useState(
+    '0x8540ac88767c07bf9d91cbe77ed1eb802832d5edc0a3e22e1af4fe3c5b6ef321',
+  );
   const [, push] = useLocation();
 
   useEffect(() => {
@@ -24,32 +27,34 @@ export const SignIn = () => {
   };
 
   return (
-    <div className="card">
-      <div className="card-header">
-        <div className="card-header-title">Login</div>
-      </div>
-      <div className="card-content">
-        <div className="field">
-          <label className="label" htmlFor="address">
-            Private key
-          </label>
-          <input
-            type="password"
-            className="input"
-            id="address"
-            value={privateKey}
-            onChange={handlePrivateKeyChange}
-          />
-        </div>
-        <button
-          type="button"
-          className="button is-primary is-fullwidth"
-          disabled={privateKey === ''}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
+    <div className="login">
+      <Card
+        title="Login"
+        content={
+          <div className="input-group">
+            <input
+              type="password"
+              className="input"
+              id="privateKey"
+              value={privateKey}
+              onChange={handlePrivateKeyChange}
+            />
+            <label className="input-label" htmlFor="privateKey">
+              Private Key
+            </label>
+          </div>
+        }
+        footer={
+          <button
+            type="button"
+            className="button"
+            disabled={privateKey === ''}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        }
+      />
     </div>
   );
 };
