@@ -1,20 +1,22 @@
 .card {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   background-color: $medium;
-  border-radius: $spacing-xs;
-  padding: $spacing-m;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.08);
 
   &-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: $spacing-m;
     color: $white;
+    padding: $spacing-m;
 
     &-title {
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 18px;
+      font-weight: 700;
     }
 
     &-icon {
@@ -25,19 +27,13 @@
 
   &-content {
     flex-grow: 1;
-    color: $gray;
-    font-size: 18px;
+    color: $white;
+    padding: $spacing-m;
   }
 
   &-footer {
     display: flex;
     justify-content: center;
-  }
-
-  &.is-balance &-content {
-    font-size: 42px;
-    text-align: center;
-    color: $blue;
-    margin-bottom: $spacing-m;
+    padding: $spacing-m;
   }
 }

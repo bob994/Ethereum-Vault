@@ -1,0 +1,35 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+  padding: $spacing-s $spacing-l;
+  border: 2px solid $blue;
+  border-radius: 25px;
+  background-color: transparent;
+  color: $blue;
+  font-size: inherit;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:not(:disabled):hover,
+  &:focus {
+    color: $blueHover;
+    border-color: $blueHover;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $gray;
+  }
+
+  + .button {
+    margin-left: $spacing-s;
+  }
+}

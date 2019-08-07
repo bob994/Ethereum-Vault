@@ -1,0 +1,14 @@
+.address {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-qr {
+    width: 150px;
+    height: 150px;
+    margin-top: $spacing-m;
+    background-color: $light;
+  }
+}

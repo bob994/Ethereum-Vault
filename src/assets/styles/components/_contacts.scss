@@ -1,0 +1,23 @@
+.contacts {
+  max-height: 200px;
+  overflow: auto;
+
+  &-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &-item {
+      margin-bottom: $spacing-s;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: $blue;
+      }
+    }
+  }
+}
