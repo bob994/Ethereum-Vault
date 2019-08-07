@@ -38,21 +38,23 @@ export const SignIn = () => {
   );
 
   return (
-    <div className="login">
-      <Card title="Login" footer={Footer}>
-        <div className="input-group">
-          <input
-            type="password"
-            className="input"
-            id="privateKey"
-            value={privateKey}
-            onChange={handlePrivateKeyChange}
-          />
-          <label className="input-label" htmlFor="privateKey">
-            Private Key
-          </label>
-        </div>
-      </Card>
+    <div className="row justify-content-center">
+      <div className="col-6">
+        <Card title="Login" footer={Footer}>
+          <div className="input-group">
+            <input
+              type="password"
+              className="input"
+              id="privateKey"
+              value={privateKey}
+              onChange={handlePrivateKeyChange}
+            />
+            <label className="input-label" htmlFor="privateKey">
+              Private Key
+            </label>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { store } from './store';
 import { connectToInfura } from './services/ether';
 
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/styles/style.scss';
 
 export const ReduxState = store;

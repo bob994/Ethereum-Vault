@@ -12,7 +12,13 @@ export const Address = () => {
   return (
     <Card title="Address" icon={CopyIcon}>
       <div className="address-content">
-        {wallet.address}
+        <input
+          type="text"
+          className="input"
+          id="address"
+          value={wallet.address}
+          disabled
+        />
         <img
           className="address-qr"
           src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${

@@ -12,7 +12,8 @@ export const Balance = () => {
   return (
     <Card title="Balance" icon={EthereumIcon}>
       <div className="balance">
-        {balance} <small>Eth</small>
+        {parseFloat(balance).toFixed(6)}
+        <small>ETH</small>
       </div>
     </Card>
   );

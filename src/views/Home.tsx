@@ -35,14 +35,14 @@ export const Home = () => {
   if (!wallet || transactions.length === 0) return <Loader />;
 
   return (
-    <div className="content">
-      <div className="content-left">
+    <div className="row">
+      <div className="col-md-5 d-flex flex-column">
         <Switch>
           <Route path="/" component={AccountInfo} />
           <Route path="/withdraw" component={Withdraw} />
         </Switch>
       </div>
-      <div className="content-right">
+      <div className="col-md-7 d-flex" id="transactions-wrapper">
         <Transactions />
       </div>
     </div>

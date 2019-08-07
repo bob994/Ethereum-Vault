@@ -41,6 +41,7 @@ function* makeTransaction(action: T.MakeTransactionRequestAction) {
 
       addContact(contact);
     }
+    yield put(T.makeTransaction.success());
   } else {
     return console.log('Error'); // TODO: Notification
   }

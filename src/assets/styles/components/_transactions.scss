@@ -1,33 +1,33 @@
-.transactions {
-  &-table {
-    height: 300px;
-    overflow: auto;
+// .transactions {
+//   &-table {
+//     height: 300px;
+//     overflow: auto;
 
-    table {
-      position: relative;
-      border-spacing: 0;
-    }
+//     table {
+//       position: relative;
+//       border-spacing: 0;
+//     }
 
-    tbody tr:hover {
-      color: $blue;
-    }
+//     tbody tr:hover {
+//       color: $blue;
+//     }
 
-    th,
-    td {
-      text-align: left;
-      padding: $spacing-s $spacing-s;
-    }
+//     th,
+//     td {
+//       text-align: left;
+//       padding: $spacing-s $spacing-s;
+//     }
 
-    th {
-      position: sticky;
-      top: 0;
-      background-color: $medium;
-      font-weight: 700;
-      border-bottom: 1px solid $white;
-    }
+//     th {
+//       position: sticky;
+//       top: 0;
+//       background-color: $medium;
+//       font-weight: 700;
+//       border-bottom: 1px solid $white;
+//     }
 
-    td {
-      background-color: $light;
-    }
-  }
-}
+//     td {
+//       background-color: $light;
+//     }
+//   }
+// }

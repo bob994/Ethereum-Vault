@@ -5,10 +5,12 @@ import React, {
   FunctionComponent,
 } from 'react';
 import Card from '../../components/Card';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeTransaction } from '../../store/modules/transactions';
 import { Contact } from '../../utils/addContact';
 import { useLocation } from 'wouter';
+import { ReduxState } from '../../store';
+import { usePrevious } from '../../utils/usePrevious';
 
 interface Props {
   selectedContact: Contact | null;
@@ -16,8 +18,14 @@ interface Props {
 
 export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
   const [address, setAddress] = useState('');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('');
   const [name, setName] = useState('');
+
+  const fetching = useSelector(
+    (state: ReduxState) => state.transactions.fetching,
+  );
+  const prevFetching = usePrevious(fetching);
+
   const dispatch = useDispatch();
   const [, push] = useLocation();
 
@@ -28,12 +36,18 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
     }
   }, [selectedContact]);
 
+  useEffect(() => {
+    if (!fetching && prevFetching) {
+      push('/');
+    }
+  }, [fetching, prevFetching]);
+
   const handleAddresChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);
   };
 
   const handleAmounChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setAmount(parseFloat(e.target.value));
+    setAmount(e.target.value);
   };
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +55,9 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
   };
 
   const handleSubmit = () => {
-    dispatch(makeTransaction.request({ address, amount, name }));
+    dispatch(
+      makeTransaction.request({ address, amount: parseFloat(amount), name }),
+    );
   };
 
   const handleCancel = () => {

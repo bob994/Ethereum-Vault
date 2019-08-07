@@ -6,7 +6,7 @@ import { SignIn } from './views/Login';
 
 const App: FunctionComponent = () => {
   return (
-    <div className="App">
+    <div className="app container">
       <Switch>
         <Route path="/sign-in" component={SignIn} />
         <Route path="/withdraw" component={Home} />
