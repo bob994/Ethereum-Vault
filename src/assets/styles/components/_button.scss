@@ -6,10 +6,10 @@
   user-select: none;
   cursor: pointer;
   padding: $spacing-s $spacing-l;
-  border: 2px solid $blue;
+  border: 2px solid $orange;
   border-radius: 25px;
   background-color: transparent;
-  color: $blue;
+  color: $orange;
   font-size: inherit;
   text-transform: uppercase;
   font-weight: 500;
@@ -20,8 +20,8 @@
 
   &:not(:disabled):hover,
   &:focus {
-    color: $blueHover;
-    border-color: $blueHover;
+    color: $orangeHover;
+    border-color: $orangeHover;
   }
 
   &:disabled {
