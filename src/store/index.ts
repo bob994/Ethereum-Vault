@@ -1,12 +1,12 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import { balanceReducer, BalanceState } from '../modules/balance';
+import { balanceReducer, BalanceState } from './modules/balance';
 import {
   transactionsReducer,
   TransactionsState,
-} from '../modules/transactions';
-import { walletReducer, WalletState } from '../modules/wallet';
+} from '../store/modules/transactions';
+import { walletReducer, WalletState } from './modules/wallet';
 
 import { rootSaga } from '../sagas';
 

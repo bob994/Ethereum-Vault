@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn, getWallet } from '../modules/wallet';
+import { signIn, getWallet } from '../store/modules/wallet';
 import { useLocation } from 'wouter';
 import Card from '../components/Card';
 
@@ -26,35 +26,33 @@ export const SignIn = () => {
     dispatch(signIn.request(privateKey));
   };
 
+  const Footer = (
+    <button
+      type="button"
+      className="button"
+      disabled={privateKey === ''}
+      onClick={handleSubmit}
+    >
+      Submit
+    </button>
+  );
+
   return (
     <div className="login">
-      <Card
-        title="Login"
-        content={
-          <div className="input-group">
-            <input
-              type="password"
-              className="input"
-              id="privateKey"
-              value={privateKey}
-              onChange={handlePrivateKeyChange}
-            />
-            <label className="input-label" htmlFor="privateKey">
-              Private Key
-            </label>
-          </div>
-        }
-        footer={
-          <button
-            type="button"
-            className="button"
-            disabled={privateKey === ''}
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        }
-      />
+      <Card title="Login" footer={Footer}>
+        <div className="input-group">
+          <input
+            type="password"
+            className="input"
+            id="privateKey"
+            value={privateKey}
+            onChange={handlePrivateKeyChange}
+          />
+          <label className="input-label" htmlFor="privateKey">
+            Private Key
+          </label>
+        </div>
+      </Card>
     </div>
   );
 };

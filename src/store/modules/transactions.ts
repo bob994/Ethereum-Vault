@@ -1,12 +1,24 @@
 import { createAsyncAction, createReducer, ActionType } from 'typesafe-actions';
 import { TransactionResponse } from 'ethers/providers';
-import { ReduxState } from '../store';
+import { ReduxState } from '../.';
+
+interface Transaction {
+  address: string;
+  amount: number;
+  name: string;
+}
 
 export const getTransactions = createAsyncAction(
   'GET_TRANSACTIONS_REQUEST',
   'GET_TRANSACTIONS_SUCCESS',
   'GET_TRANSACTIONS_FAILURE',
 )<string, TransactionResponse[], undefined>();
+
+export const makeTransaction = createAsyncAction(
+  'MAKE_TRANSACTION_REQUEST',
+  'MAKE_TRANSACTION_SUCCESS',
+  'MAKE_TRANSACTION_FAILURE',
+)<Transaction, undefined, undefined>();
 
 export type GetTransactionsRequestAction = ActionType<
   typeof getTransactions.request
@@ -18,10 +30,23 @@ export type GetTransactionsFailureAction = ActionType<
   typeof getTransactions.failure
 >;
 
+export type MakeTransactionRequestAction = ActionType<
+  typeof makeTransaction.request
+>;
+export type MakeTransactionSuccessAction = ActionType<
+  typeof makeTransaction.success
+>;
+export type MakeTransactionFailureAction = ActionType<
+  typeof makeTransaction.failure
+>;
+
 type TransactionsActions =
   | GetTransactionsRequestAction
   | GetTransactionsSuccessAction
-  | GetTransactionsFailureAction;
+  | GetTransactionsFailureAction
+  | MakeTransactionRequestAction
+  | MakeTransactionSuccessAction
+  | MakeTransactionFailureAction;
 
 export interface TransactionsState {
   transactions: TransactionResponse[];
@@ -46,7 +71,19 @@ export const transactionsReducer = createReducer<
     transactions: action.payload,
     fetching: false,
   }))
-  .handleAction(getTransactions.failure, (state, action) => ({
+  .handleAction(getTransactions.failure, state => ({
+    ...state,
+    fetching: false,
+  }))
+  .handleAction(makeTransaction.request, state => ({
+    ...state,
+    fetching: true,
+  }))
+  .handleAction(makeTransaction.success, state => ({
+    ...state,
+    fetching: false,
+  }))
+  .handleAction(makeTransaction.failure, state => ({
     ...state,
     fetching: false,
   }));

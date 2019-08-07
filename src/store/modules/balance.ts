@@ -1,7 +1,7 @@
 import { createAsyncAction, createReducer, ActionType } from 'typesafe-actions';
 import { BigNumber, formatEther } from 'ethers/utils';
 import { Zero } from 'ethers/constants';
-import { ReduxState } from '../store';
+import { ReduxState } from '../.';
 
 export const getBalance = createAsyncAction(
   'GET_BALANCE_REQUEST',

@@ -1,6 +1,6 @@
 import { createAsyncAction, createReducer, ActionType } from 'typesafe-actions';
 import { Wallet } from 'ethers';
-import { ReduxState } from '../store';
+import { ReduxState } from '../.';
 
 export const signIn = createAsyncAction(
   'SIGN_IN_REQUEST',
