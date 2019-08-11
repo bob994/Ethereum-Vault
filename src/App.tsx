@@ -7,11 +7,12 @@ import { SignIn } from './views/Login';
 
 toast.configure({
   autoClose: 5000,
+  pauseOnHover: false,
 });
 
 const App: FunctionComponent = () => {
   return (
-    <div className="app container">
+    <div className="app container-fluid">
       <Switch>
         <Route path="/sign-in" component={SignIn} />
         <Route path="/withdraw" component={Home} />

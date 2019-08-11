@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../../components/Card';
 import { Contact } from '../../utils/addContact';
+import { ReactComponent as ContactsIcon } from '../../assets/icons/network.svg';
 
 export const Contacts = ({ handleSelectContact }: any) => {
   const contacts: Contact[] = JSON.parse(
@@ -21,7 +22,7 @@ export const Contacts = ({ handleSelectContact }: any) => {
       : 'Create new transaction to add contact';
 
   return (
-    <Card title="Contacts">
+    <Card title="Contacts" Icon={ContactsIcon}>
       <div className="contacts">
         <ul className="contacts-list">{List}</ul>
       </div>

@@ -1,19 +1,19 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, SVGProps } from 'react';
 
 interface Props {
   title: string;
-  icon?: string;
+  Icon?: FunctionComponent<SVGProps<SVGSVGElement>>;
   footer?: JSX.Element;
 }
 
-const Card: FunctionComponent<Props> = ({ title, icon, footer, children }) => {
+const Card: FunctionComponent<Props> = ({ title, Icon, footer, children }) => {
   return (
     <div className="card">
       <div className="card-header">
         <div className="card-header-title">{title}</div>
-        {icon && (
+        {Icon && (
           <div className="card-header-icon">
-            <img src={icon} alt="Copy Address" />
+            <Icon />
           </div>
         )}
       </div>

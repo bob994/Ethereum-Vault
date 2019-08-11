@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Card from '../../components/Card';
 
-import EthereumIcon from '../../assets/icons/ethereum.svg';
+import { ReactComponent as BalanceIcon } from '../../assets/icons/ethereum.svg';
 import { balanceToString, getBalance } from '../../store/modules/balance';
 
 export const Balance = () => {
@@ -15,7 +15,7 @@ export const Balance = () => {
   }, []);
 
   return (
-    <Card title="Balance" icon={EthereumIcon}>
+    <Card title="Balance" Icon={BalanceIcon}>
       <div className="balance">
         {parseFloat(balance).toFixed(6)}
         <small>ETH</small>

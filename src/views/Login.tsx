@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signIn, getWallet } from '../store/modules/wallet';
 import { useLocation } from 'wouter';
 import Card from '../components/Card';
+import { ReactComponent as LoginIcon } from '../assets/icons/login.svg';
 
 export const SignIn = () => {
   const wallet = useSelector(getWallet);
@@ -39,8 +40,8 @@ export const SignIn = () => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-6">
-        <Card title="Login" footer={Footer}>
+      <div className="col-sm-4 mt-5">
+        <Card title="Login" footer={Footer} Icon={LoginIcon}>
           <div className="input-group">
             <input
               type="password"

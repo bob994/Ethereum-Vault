@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Switch, Route } from 'wouter';
 
-import { getWallet } from '../store/modules/wallet';
+import { getWallet, logout } from '../store/modules/wallet';
 
 import { Transactions } from './partials/Transactions';
 import { Withdraw } from './partials/Withdraw';
@@ -11,6 +11,7 @@ import { Loader } from '../components/Loader';
 
 export const Home = () => {
   const wallet = useSelector(getWallet);
+  const dispatch = useDispatch();
   const [, push] = useLocation();
 
   useEffect(() => {
@@ -19,19 +20,30 @@ export const Home = () => {
     }
   });
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   if (!wallet) return <Loader />;
 
   return (
-    <div className="row">
-      <div className="col-md-5 d-flex flex-column">
-        <Switch>
-          <Route path="/" component={AccountInfo} />
-          <Route path="/withdraw" component={Withdraw} />
-        </Switch>
+    <>
+      <header className="d-flex justify-content-end p-3">
+        <button className="button" type="button" onClick={handleLogout}>
+          Logout
+        </button>
+      </header>
+      <div className="row">
+        <div className="col-md-5 d-flex flex-column">
+          <Switch>
+            <Route path="/" component={AccountInfo} />
+            <Route path="/withdraw" component={Withdraw} />
+          </Switch>
+        </div>
+        <div className="col-md-7 d-flex" id="transactions-wrapper">
+          <Transactions />
+        </div>
       </div>
-      <div className="col-md-7 d-flex" id="transactions-wrapper">
-        <Transactions />
-      </div>
-    </div>
+    </>
   );
 };

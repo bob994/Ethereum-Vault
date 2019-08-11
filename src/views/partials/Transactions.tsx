@@ -12,7 +12,7 @@ import {
 
 import Card from '../../components/Card';
 
-import MoreIcon from '../../assets/icons/more.svg';
+import { ReactComponent as TransactionsIcon } from '../../assets/icons/blockchain.svg';
 import { Loader } from '../../components/Loader';
 
 export const Transactions = () => {
@@ -44,6 +44,10 @@ export const Transactions = () => {
 
   const goToWithdraw = () => {
     push('/withdraw');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const Footer = (
@@ -58,19 +62,21 @@ export const Transactions = () => {
     <tr key={transaction.hash}>
       <td>{transaction.from}</td>
       <td>{transaction.to}</td>
-      <td>{formatEther(transaction.value)}</td>
+      <td title={formatEther(transaction.value)}>
+        {parseFloat(formatEther(transaction.value)).toFixed(6)}
+      </td>
     </tr>
   ));
 
   return (
     <Card
       title="Transactions History"
-      icon={MoreIcon}
+      Icon={TransactionsIcon}
       footer={match ? Footer : undefined}
     >
-      {transactions.length === 0 ? (
+      {transactions.length > 0 ? (
         <PerfectScrollbar style={{ width: tableWidth }}>
-          <table className="table table-borderless">
+          <table className="table table-borderless table-hover">
             <thead>
               <tr>
                 <th>From</th>

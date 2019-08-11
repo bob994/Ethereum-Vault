@@ -11,6 +11,7 @@ import { Contact } from '../../utils/addContact';
 import { useLocation } from 'wouter';
 import { ReduxState } from '../../store';
 import { usePrevious } from '../../utils/usePrevious';
+import { ReactComponent as WithdrawIcon } from '../../assets/icons/transaction.svg';
 
 interface Props {
   selectedContact: Contact | null;
@@ -81,7 +82,7 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
   );
 
   return (
-    <Card footer={Footer} title="New Transaction">
+    <Card footer={Footer} title="New Transaction" Icon={WithdrawIcon}>
       <>
         <div className="input-group">
           <input

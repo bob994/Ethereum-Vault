@@ -4,8 +4,9 @@ import Clipboard from 'clipboard';
 
 import Card from '../../components/Card';
 
-import CopyIcon from '../../assets/icons/copy.svg';
+import { ReactComponent as AddressIcon } from '../../assets/icons/wallet.svg';
 import { getWallet } from '../../store/modules/wallet';
+import { toast } from 'react-toastify';
 
 export const Address = () => {
   const wallet = useSelector(getWallet)!;
@@ -13,16 +14,23 @@ export const Address = () => {
 
   new Clipboard('#address');
 
+  const handleOnClick = () => {
+    toast.info('Address copied to clipboard.', {
+      position: 'top-left',
+    });
+  };
+
   return (
-    <Card title="Address" icon={CopyIcon}>
+    <Card title="Address" Icon={AddressIcon}>
       <div className="address-content">
         <input
           type="text"
           className="input"
           id="address"
           value={address}
-          disabled
+          readOnly
           data-clipboard-text={address}
+          onClick={handleOnClick}
         />
         <img
           className="address-qr"
