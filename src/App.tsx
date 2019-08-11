@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { Route, Switch } from 'wouter';
+import { toast } from 'react-toastify';
 
 import { Home } from './views/Home';
 import { SignIn } from './views/Login';
+
+toast.configure({
+  autoClose: 5000,
+});
 
 const App: FunctionComponent = () => {
   return (

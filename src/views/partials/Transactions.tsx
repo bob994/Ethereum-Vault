@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { formatEther } from 'ethers/utils';
+import { useLocation, useRoute } from 'wouter';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+
+import { getWallet } from '../../store/modules/wallet';
+import {
+  getTransactionsSelector,
+  getTransactions,
+} from '../../store/modules/transactions';
 
 import Card from '../../components/Card';
 
 import MoreIcon from '../../assets/icons/more.svg';
-import { getTransactionsSelector } from '../../store/modules/transactions';
-import { useLocation, useRoute } from 'wouter';
+import { Loader } from '../../components/Loader';
 
 export const Transactions = () => {
+  const [tableWidth, setTableWidth] = useState(0);
+  const wallet = useSelector(getWallet)!;
   const transactions = useSelector(getTransactionsSelector);
+  const dispatch = useDispatch();
   const [, push] = useLocation();
   const [match] = useRoute('/');
-  const [tableWidth, setTableWidth] = useState(0);
+
+  useEffect(() => {
+    dispatch(getTransactions.request(wallet.address));
+  }, []);
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
 
   const updateDimensions = () => {
     setTableWidth(
       window.document.getElementById('transactions-wrapper')!.offsetWidth - 80,
     );
   };
-
-  useEffect(() => {
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => {
-      window.removeEventListener('resize', updateDimensions);
-    };
-  }, []);
-
-  const Rows = transactions.map(transaction => (
-    <tr key={transaction.hash}>
-      <td>{transaction.from}</td>
-      <td>{transaction.to}</td>
-      <td>{formatEther(transaction.value)}</td>
-    </tr>
-  ));
 
   const goToWithdraw = () => {
     push('/withdraw');
@@ -49,24 +54,36 @@ export const Transactions = () => {
     </div>
   );
 
+  const Rows = transactions.map(transaction => (
+    <tr key={transaction.hash}>
+      <td>{transaction.from}</td>
+      <td>{transaction.to}</td>
+      <td>{formatEther(transaction.value)}</td>
+    </tr>
+  ));
+
   return (
     <Card
       title="Transactions History"
       icon={MoreIcon}
       footer={match ? Footer : undefined}
     >
-      <PerfectScrollbar style={{ width: tableWidth }}>
-        <table className="table table-borderless">
-          <thead>
-            <tr>
-              <th>From</th>
-              <th>To</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>{Rows}</tbody>
-        </table>
-      </PerfectScrollbar>
+      {transactions.length === 0 ? (
+        <PerfectScrollbar style={{ width: tableWidth }}>
+          <table className="table table-borderless">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>{Rows}</tbody>
+          </table>
+        </PerfectScrollbar>
+      ) : (
+        <Loader />
+      )}
     </Card>
   );
 };

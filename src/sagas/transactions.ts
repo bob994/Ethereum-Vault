@@ -7,6 +7,7 @@ import { getWallet } from '../store/modules/wallet';
 import { getHistory, sendTransaction } from '../services/ether';
 import { addContact, Contact } from '../utils/addContact';
 import { parseEther } from 'ethers/utils';
+import { toast } from 'react-toastify';
 
 function* getTransactions(action: T.GetTransactionsRequestAction) {
   const transactions: TransactionResponse[] = yield call(
@@ -15,7 +16,7 @@ function* getTransactions(action: T.GetTransactionsRequestAction) {
   );
 
   if (!transactions) {
-    return console.log('Error'); // TODO: Notification
+    return toast.error('Error');
   }
 
   yield put(T.getTransactions.success(transactions));
@@ -32,19 +33,21 @@ function* makeTransaction(action: T.MakeTransactionRequestAction) {
 
   const response = yield call(sendTransaction, wallet, transactionRequest);
 
-  if (response) {
-    if (name) {
-      const contact: Contact = {
-        name: name,
-        address: address,
-      };
-
-      addContact(contact);
-    }
-    yield put(T.makeTransaction.success());
-  } else {
-    return console.log('Error'); // TODO: Notification
+  if (!response) {
+    return toast.error('Error');
   }
+
+  if (name) {
+    const contact: Contact = {
+      name: name,
+      address: address,
+    };
+
+    addContact(contact);
+  }
+
+  yield put(T.makeTransaction.success());
+  toast.success('Transaction created');
 }
 
 export function* transactionsSagas() {

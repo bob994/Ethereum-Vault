@@ -5,6 +5,7 @@ import { BigNumber } from 'ethers/utils';
 import { ReduxState } from '../store';
 import { getBalanceFromWallet } from '../services/ether';
 import * as B from '../store/modules/balance';
+import { toast } from 'react-toastify';
 
 function* getBalance() {
   const wallet: Wallet | null = yield select(
@@ -12,16 +13,16 @@ function* getBalance() {
   );
 
   if (!wallet) {
-    return console.log('Error'); // TODO: Notification
+    return toast.error('Error');
   }
 
   const balance: BigNumber = yield call(getBalanceFromWallet, wallet);
 
-  if (balance) {
-    yield put(B.getBalance.success(balance));
-  } else {
-    return console.log('Error'); // TODO: Notification
+  if (!balance) {
+    return toast.error('Error');
   }
+
+  yield put(B.getBalance.success(balance));
 }
 
 export function* balanceSagas() {
