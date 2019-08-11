@@ -24,15 +24,22 @@ export const Transactions = () => {
   const [match] = useRoute('/');
 
   useEffect(() => {
-    dispatch(getTransactions.request(wallet.address));
-  }, []);
-
-  useEffect(() => {
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
 
     return () => {
       window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(getTransactions.request(wallet.address));
+
+    const timeout = setInterval(() => {
+      dispatch(getTransactions.request(wallet.address));
+    }, 15000);
+    return () => {
+      clearInterval(timeout);
     };
   }, []);
 
