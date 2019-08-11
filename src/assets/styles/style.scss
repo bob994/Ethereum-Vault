@@ -33,18 +33,15 @@ body {
   background-color: $dark;
 }
 
-.app {
-  margin-top: 30px;
-}
-
-.text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .table {
   color: $white;
+
+  td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   th {
     text-align: left;
@@ -59,4 +56,8 @@ body {
 .ps__rail-y {
   opacity: 1 !important;
   z-index: 5;
+}
+
+.table-hover tbody tr:hover {
+  color: $white;
 }
