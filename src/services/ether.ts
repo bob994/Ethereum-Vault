@@ -9,8 +9,8 @@ import { BigNumber } from 'ethers/utils';
 
 export const connectToInfura = (): EtherscanProvider =>
   new ethers.providers.EtherscanProvider(
-    'rinkeby',
-    'a50a7ad13d194fa7bf65aeb198008b73',
+    process.env.REACT_APP_NETWORK,
+    process.env.REACT_APP_API_KEYREACT_APP_API_KEY,
   );
 
 export const signInToWallet = (privateKey: string): Wallet =>

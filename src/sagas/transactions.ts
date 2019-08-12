@@ -26,12 +26,11 @@ function* makeTransaction(action: T.MakeTransactionRequestAction) {
   const { address, amount, name } = action.payload;
   const wallet: Wallet = yield select(getWallet);
 
-  const transactionRequest: TransactionRequest = {
-    to: address,
-    value: parseEther(amount.toString()),
-  };
-
   try {
+    const transactionRequest: TransactionRequest = {
+      to: address,
+      value: parseEther(amount.toString()),
+    };
     yield call(sendTransaction, wallet, transactionRequest);
 
     if (name) {

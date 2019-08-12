@@ -42,7 +42,7 @@ export const Transactions = () => {
     return () => {
       clearInterval(timeout);
     };
-  }, []);
+  }, [dispatch, wallet.address]);
 
   const updateDimensions = () => {
     setTableWidth(
@@ -66,8 +66,8 @@ export const Transactions = () => {
     </div>
   );
 
-  const Rows = transactions.map(transaction => (
-    <tr key={transaction.hash}>
+  const Rows = transactions.map((transaction, i) => (
+    <tr key={i}>
       <td>{transaction.from}</td>
       <td>{transaction.to}</td>
       <td title={formatEther(transaction.value)}>

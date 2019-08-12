@@ -28,12 +28,11 @@ type WalletActions =
   | LogoutAction;
 
 export interface WalletState {
-  wallet: Wallet | null;
+  wallet?: Wallet;
   fetching: boolean;
 }
 
 const INITIAL_STATE: WalletState = {
-  wallet: null,
   fetching: false,
 };
 

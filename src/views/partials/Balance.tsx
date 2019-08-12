@@ -12,7 +12,7 @@ export const Balance = () => {
 
   useEffect(() => {
     dispatch(getBalance.request());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Card title="Balance" Icon={BalanceIcon}>

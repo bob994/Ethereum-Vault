@@ -42,10 +42,14 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
   }, [selectedContact]);
 
   useEffect(() => {
-    if (prevRouteRedirect !== undefined && routeRedirect) {
+    if (
+      prevRouteRedirect !== undefined &&
+      !prevRouteRedirect &&
+      routeRedirect
+    ) {
       push('/');
     }
-  }, [routeRedirect, prevRouteRedirect]);
+  }, [routeRedirect, prevRouteRedirect, push]);
 
   const handleAddresChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);
@@ -96,8 +100,8 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
         id="amount"
         value={amount}
         onChange={handleAmounChange}
-        label="Amount"
-        helperText={`Balance: ${balance}`}
+        label="Amount (ETH)"
+        helpertext={`Balance: ${balance}ETH`}
       />
       <InputGroup
         type="text"
