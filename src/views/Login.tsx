@@ -10,9 +10,7 @@ import InputGroup from '../components/InputGroup';
 export const SignIn = () => {
   const wallet = useSelector(getWallet);
   const dispatch = useDispatch();
-  const [privateKey, setPrivateKey] = useState(
-    '0x8540ac88767c07bf9d91cbe77ed1eb802832d5edc0a3e22e1af4fe3c5b6ef321',
-  );
+  const [privateKey, setPrivateKey] = useState('');
   const [, push] = useLocation();
 
   useEffect(() => {
