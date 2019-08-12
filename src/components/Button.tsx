@@ -6,7 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: FunctionComponent<Props> = props => {
   const { variant, type = 'button' } = props;
-  console.log(variant);
+
   return (
     <button
       type={type}

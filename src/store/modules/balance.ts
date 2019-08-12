@@ -39,4 +39,4 @@ export const balanceReducer = createReducer<BalanceState, BalanceActions>(
   .handleAction(getBalance.failure, state => ({ ...state, fetching: false }));
 
 export const balanceToString = (state: ReduxState) =>
-  formatEther(state.balance.balance);
+  parseFloat(formatEther(state.balance.balance)).toFixed(6);

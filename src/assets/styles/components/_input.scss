@@ -22,8 +22,15 @@
   }
 
   &-label {
-    display: block;
     margin-bottom: $spacing-s;
+
+    label {
+      font-size: 14px;
+    }
+  }
+
+  &-helper {
+    color: $orange;
     font-size: 14px;
   }
 }

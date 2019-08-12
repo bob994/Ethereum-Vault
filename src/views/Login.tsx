@@ -5,6 +5,7 @@ import { useLocation } from 'wouter';
 import Card from '../components/Card';
 import { ReactComponent as LoginIcon } from '../assets/icons/login.svg';
 import Button from '../components/Button';
+import InputGroup from '../components/InputGroup';
 
 export const SignIn = () => {
   const wallet = useSelector(getWallet);
@@ -42,18 +43,13 @@ export const SignIn = () => {
     <div className="row justify-content-center">
       <div className="col-sm-4 mt-5">
         <Card title="Login" footer={Footer} Icon={LoginIcon}>
-          <div className="input-group">
-            <input
-              type="password"
-              className="input"
-              id="privateKey"
-              value={privateKey}
-              onChange={handlePrivateKeyChange}
-            />
-            <label className="input-label" htmlFor="privateKey">
-              Private Key
-            </label>
-          </div>
+          <InputGroup
+            type="password"
+            id="privateKey"
+            value={privateKey}
+            onChange={handlePrivateKeyChange}
+            label="Private Key"
+          />
         </Card>
       </div>
     </div>
