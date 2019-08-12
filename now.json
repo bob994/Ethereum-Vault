@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "REACT_APP_NETWORK": "rinkeby",
+      "REACT_APP_API_KEY": "a50a7ad13d194fa7bf65aeb198008b73"
+    }
+  }
+}

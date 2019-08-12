@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build REACT_APP_NETWORK=rinkeby REACT_APP_API_KEY=a50a7ad13d194fa7bf65aeb198008b73",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
