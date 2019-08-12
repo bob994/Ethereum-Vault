@@ -8,6 +8,7 @@ import { Transactions } from './partials/Transactions';
 import { Withdraw } from './partials/Withdraw';
 import { AccountInfo } from './partials/AccountInfo';
 import { Loader } from '../components/Loader';
+import Button from '../components/Button';
 
 export const Home = () => {
   const wallet = useSelector(getWallet);
@@ -29,9 +30,7 @@ export const Home = () => {
   return (
     <>
       <header className="d-flex justify-content-end p-3">
-        <button className="button" type="button" onClick={handleLogout}>
-          Logout
-        </button>
+        <Button onClick={handleLogout}>Logout</Button>
       </header>
       <div className="row">
         <div className="col-md-5 d-flex flex-column">

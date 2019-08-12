@@ -12,6 +12,7 @@ import { useLocation } from 'wouter';
 import { ReduxState } from '../../store';
 import { usePrevious } from '../../utils/usePrevious';
 import { ReactComponent as WithdrawIcon } from '../../assets/icons/transaction.svg';
+import Button from '../../components/Button';
 
 interface Props {
   selectedContact: Contact | null;
@@ -67,17 +68,14 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
 
   const Footer = (
     <>
-      <button
-        type="button"
-        className="button"
+      <Button
+        variant="rounded"
         onClick={handleSubmit}
         disabled={!address || !amount}
       >
         Submit
-      </button>
-      <button type="button" className="button" onClick={handleCancel}>
-        Cancel
-      </button>
+      </Button>
+      <Button onClick={handleCancel}>Cancel</Button>
     </>
   );
 

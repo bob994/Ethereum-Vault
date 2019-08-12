@@ -14,6 +14,7 @@ import Card from '../../components/Card';
 
 import { ReactComponent as TransactionsIcon } from '../../assets/icons/blockchain.svg';
 import { Loader } from '../../components/Loader';
+import Button from '../../components/Button';
 
 export const Transactions = () => {
   const [tableWidth, setTableWidth] = useState(0);
@@ -59,9 +60,9 @@ export const Transactions = () => {
 
   const Footer = (
     <div className="center-button">
-      <button className="button" type="button" onClick={goToWithdraw}>
+      <Button variant="rounded" onClick={goToWithdraw}>
         Withdraw
-      </button>
+      </Button>
     </div>
   );
 

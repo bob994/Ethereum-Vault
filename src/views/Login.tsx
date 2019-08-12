@@ -4,6 +4,7 @@ import { signIn, getWallet } from '../store/modules/wallet';
 import { useLocation } from 'wouter';
 import Card from '../components/Card';
 import { ReactComponent as LoginIcon } from '../assets/icons/login.svg';
+import Button from '../components/Button';
 
 export const SignIn = () => {
   const wallet = useSelector(getWallet);
@@ -28,14 +29,13 @@ export const SignIn = () => {
   };
 
   const Footer = (
-    <button
-      type="button"
-      className="button"
+    <Button
+      variant="rounded"
       disabled={privateKey === ''}
       onClick={handleSubmit}
     >
       Submit
-    </button>
+    </Button>
   );
 
   return (

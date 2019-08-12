@@ -6,13 +6,17 @@
   user-select: none;
   cursor: pointer;
   padding: $spacing-s $spacing-l;
-  border: 2px solid $orange;
-  border-radius: 25px;
   background-color: transparent;
   color: $orange;
   font-size: inherit;
   text-transform: uppercase;
   font-weight: 500;
+  border: 0;
+
+  &.rounded {
+    border: 2px solid $orange;
+    border-radius: 25px;
+  }
 
   &:focus {
     outline: 0;
