@@ -22,10 +22,10 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
   const [amount, setAmount] = useState('');
   const [name, setName] = useState('');
 
-  const fetching = useSelector(
-    (state: ReduxState) => state.transactions.fetching,
+  const routeRedirect = useSelector(
+    (state: ReduxState) => state.transactions.routeRedirect,
   );
-  const prevFetching = usePrevious(fetching);
+  const prevRouteRedirect = usePrevious(routeRedirect);
 
   const dispatch = useDispatch();
   const [, push] = useLocation();
@@ -38,10 +38,10 @@ export const WithdrawForm: FunctionComponent<Props> = ({ selectedContact }) => {
   }, [selectedContact]);
 
   useEffect(() => {
-    if (!fetching && prevFetching) {
+    if (prevRouteRedirect !== undefined && routeRedirect) {
       push('/');
     }
-  }, [fetching, prevFetching]);
+  }, [routeRedirect, prevRouteRedirect]);
 
   const handleAddresChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);

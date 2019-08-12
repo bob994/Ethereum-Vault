@@ -51,11 +51,13 @@ type TransactionsActions =
 export interface TransactionsState {
   transactions: TransactionResponse[];
   fetching: boolean;
+  routeRedirect: boolean;
 }
 
 const INITIAL_STATE: TransactionsState = {
   transactions: [],
   fetching: false,
+  routeRedirect: false,
 };
 
 export const transactionsReducer = createReducer<
@@ -78,10 +80,12 @@ export const transactionsReducer = createReducer<
   .handleAction(makeTransaction.request, state => ({
     ...state,
     fetching: true,
+    routeRedirect: false,
   }))
   .handleAction(makeTransaction.success, state => ({
     ...state,
     fetching: false,
+    routeRedirect: true,
   }))
   .handleAction(makeTransaction.failure, state => ({
     ...state,

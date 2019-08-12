@@ -17,7 +17,7 @@ export const SignIn = () => {
     if (wallet) {
       push('/');
     }
-  });
+  }, [wallet]);
 
   const handlePrivateKeyChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPrivateKey(e.target.value);
