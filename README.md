@@ -1,3 +1,24 @@
+## Project Documentation
+
+### [Demo](https://ethereum-vault.b-nesic.now.sh/)
+
+Application is hosted with [Now](https://zeit.co/now).
+
+Application is connected to ethereum node with [Infura.io](https://infura.io).
+
+Default network is rinkeby and can be changed inside .env files.
+
+Other than required frameworks/libraries (react, redux), I used folowing depedencies:
+
+- redux-saga - For side effects
+- typesafe-actions - For safer work with redux
+- wouter - For (minimalistic) routing (I wanted to try something new, other thar react-router)
+- bootstrap - For help with styling
+- clipboard - For coping to clipboard
+- ethers - For manipulating with ethereum node
+- react-perfect-scrollbar - For craeting responsive container that helds table
+- react-tostify - For displaying toaster notifications
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
