@@ -8,6 +8,7 @@ import { SignIn } from './views/Login';
 toast.configure({
   autoClose: 5000,
   pauseOnHover: false,
+  position: 'top-left',
 });
 
 const App: FunctionComponent = () => {

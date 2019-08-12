@@ -10,16 +10,16 @@ function* signIn(action: W.SignInRequestAction) {
   const privateKey = action.payload;
 
   if (!isHexString(privateKey)) {
-    return toast.error('Error');
+    return toast.error('wrong address');
   }
 
-  const wallet: Wallet = yield call(signInToWallet, privateKey);
+  try {
+    const wallet: Wallet = yield call(signInToWallet, privateKey);
 
-  if (!wallet) {
-    return toast.error('Error');
+    yield put(W.signIn.success(wallet));
+  } catch (error) {
+    toast.error(error.reason);
   }
-
-  yield put(W.signIn.success(wallet));
 }
 
 export function* walletSagas() {

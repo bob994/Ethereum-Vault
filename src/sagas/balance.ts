@@ -13,16 +13,16 @@ function* getBalance() {
   );
 
   if (!wallet) {
-    return toast.error('Error');
+    return toast.error('no wallet in store');
   }
 
-  const balance: BigNumber = yield call(getBalanceFromWallet, wallet);
+  try {
+    const balance: BigNumber = yield call(getBalanceFromWallet, wallet);
 
-  if (!balance) {
-    return toast.error('Error');
+    yield put(B.getBalance.success(balance));
+  } catch (error) {
+    toast.error(error.reason);
   }
-
-  yield put(B.getBalance.success(balance));
 }
 
 export function* balanceSagas() {

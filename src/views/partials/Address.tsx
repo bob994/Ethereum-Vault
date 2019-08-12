@@ -15,9 +15,7 @@ export const Address = () => {
   new Clipboard('#address');
 
   const handleOnClick = () => {
-    toast.info('Address copied to clipboard.', {
-      position: 'top-left',
-    });
+    toast.info('Address copied to clipboard.');
   };
 
   return (

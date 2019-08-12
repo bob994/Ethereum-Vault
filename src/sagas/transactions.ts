@@ -15,11 +15,11 @@ function* getTransactions(action: T.GetTransactionsRequestAction) {
     action.payload,
   );
 
-  if (!transactions) {
-    return toast.error('Error');
+  try {
+    yield put(T.getTransactions.success(transactions));
+  } catch (error) {
+    toast.error(error.reason);
   }
-
-  yield put(T.getTransactions.success(transactions));
 }
 
 function* makeTransaction(action: T.MakeTransactionRequestAction) {
@@ -31,23 +31,23 @@ function* makeTransaction(action: T.MakeTransactionRequestAction) {
     value: parseEther(amount.toString()),
   };
 
-  const response = yield call(sendTransaction, wallet, transactionRequest);
+  try {
+    yield call(sendTransaction, wallet, transactionRequest);
 
-  if (!response) {
-    return toast.error('Error');
+    if (name) {
+      const contact: Contact = {
+        name: name,
+        address: address,
+      };
+
+      addContact(contact);
+    }
+
+    yield put(T.makeTransaction.success());
+    toast.success('Transaction created');
+  } catch (error) {
+    toast.error(error.reason);
   }
-
-  if (name) {
-    const contact: Contact = {
-      name: name,
-      address: address,
-    };
-
-    addContact(contact);
-  }
-
-  yield put(T.makeTransaction.success());
-  toast.success('Transaction created');
 }
 
 export function* transactionsSagas() {
